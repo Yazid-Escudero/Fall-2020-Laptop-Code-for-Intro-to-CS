@@ -1,0 +1,7 @@
+Skyla, Guthrie, CS, Doctoral, 3.83
+Cherie, Morton, EE, Master, 4.00
+Natalie, Mason, MA, Bachelor, 3.15
+Rodney, Ward, PT, Master, 3.76
+Finnley, Stone, EE, Master, 2.97
+Musab, Griffith, CS, Bachelor, 3.86
+Gabriela, Hays, SE, Master, 3.14

@@ -1,0 +1,164 @@
+//This is pseudocode for Comprehensive Lab 2 of CS1101 from Fall 2020
+//Author: Yazid Escudero
+
+
+/**********************************************************/
+Methods other than main method:
+    
+	Calculate Interest Rate
+		-takes credit score as parameter and returns double as interest rate
+		-use if-elseif-else statements to calculate value to be returned
+		-EXAMPLE:
+			if credit score is 800 to 850 inclusive, return 0.028 interest rate
+			else if...
+			else ...
+	
+	CalculateDownPayment
+		-takes credit score and house cost amount as integer parameters
+		-returns double value that is the amount of downpayment
+		-initiate variable percentDownpayment where downpayment % will be stored
+		- use if-elseif-else statements to determine % of downpayment needed
+		-EXAMPLE:
+			if credit score is 800 to 850 inclusive, then assign a variable percentDownpayment
+			to 0.05 (so 5%)
+			else if...
+			else ...
+		-multiply parameter house cost times the percentDownpayment variable, and return the result
+		 as a double value
+	
+	EstimateMonthlyPayment
+		-take as parameters double totalLoan, double monthlyRate, and int number of months of Loan
+		-return a double value that is the monthly payment due each monthly
+		
+		- use formula to calculate the monthly payment in code:
+			
+			monthly payment = [ totalLoan * (monthlyRate * (1 + monthlyRate)^totalMonths ] / [ (1 + monthlyrate)^totalMonths - 1 ]
+			
+			where:
+				
+				totalLoad = HomeValue - DownPayment
+				monthlyRate = interestRate / 12;
+				
+				Total months is:
+					if 15 years ---> 180 months
+					if 30 years ---> 360 months
+		
+		-you will get all necessary values as parameters from values in the MANI METHOD
+		
+	
+	IsLoanApproved
+		-take double house's cost, int creditScore, double amountSaved, double monthly Income as parameters
+		-declare boolean variable LoanApproved and later store based on logic flow of this method and provided parameters
+		
+		-create double maximumHomePrice and set it equal to houseCost * 3.5
+		-if houseCost greater than maximumHomeCost, then LoanApproved immediately false
+		-check amountSaved and compare to criteria through if statements:
+			example: credit score 800 - 850 ---> 5% of home
+			         credit score 740-799   ---> 7% of home
+		-check that (montlyPayment / monthlyIncome) * 100 is NOT less than 42.
+			-if less:
+				LoanApproved is false
+			-else:
+				LoanApproved = true
+	
+	
+	
+	
+	
+	
+	PrintLoanDecisions
+		-take array decisions
+		
+		-create file object and assign it with argument that is path to CSV file
+		-create Sanner object that reads from file object
+		
+		read first line from user to get rid of header line values that are not necessary
+		
+		
+		begin while loop>>>>>
+		
+			while (there is a line to be read)
+				-print out result
+					if approved (determined from array):
+						-print out approval decision and monthly payment, which is a value you will get form main
+					else :
+						-print out denial decision WITHOUT reporting any monthly payments
+			
+		>>>>>>>END_OF_WHILE_LOOP
+	
+	
+	
+/**********************************************************/
+MAIN METHOD:
+	
+	
+	create Scanner object and assign reference to variable "input" to read from user in console
+	
+	create boolean varable userQuits and set it to false to loop forcefuflly iterates at least one times
+	assign to true if user chooses to quit (chooses optoin d)
+
+initiate while loop>>>>
+	Print out menu:
+		"
+			a. Loan Approval Calculator
+			b. Monthly Payment Calculator
+			c. Loan Approval Reader
+			d. Exit Mortgage Banking Interface
+		"
+		
+	if user chooses a. Loan Approval Calculator
+		create variables to hold:
+			first name
+			last name
+			annual gross income to nearest dollar
+			Total Savings to nearest dollar
+			credit score
+			desired home value
+			total months
+		
+		CALL METHOD IsLoanApproved Calculator and print out result in following statement as such:
+		printToScreen "The Loan is " + result of IsLoanApproved with passed parameters
+			
+	else if user chooses b. Monthly Payment Calculator
+		create variables to hold:
+			Credit Score
+			Desired home value
+			Total months to finance
+			
+			CALL METHOD EstimateMonthlyPayment and print out result in following statement
+			printToScreen "The Estimated Monthly Payment is $" + result of EstimateMonthlyPayment with passed parameters
+		
+	else if user chooses c. Loan Approval Reader
+		create File Object with path to CSV file pased as argument
+		create Scanner object and assign reference to variable "fileinput" to read from CSV file
+			the scanner object's source will be file object created prior to the last statement
+			
+			
+			
+			create variable int applicationsCount = 0
+			iterate through CSV file and increase applicationsCount by 1 each iteration
+				
+			now create array loanDecisions with size of applicationsCount to populate later
+			
+			create FOR LOOP and POPULATE ARRAY EACH ITERATION and ITERATE THROUGH CSV FILE ONCE AGAIN
+				create varialbes to hold the following:
+					first name
+					last name
+					boolean approvalStatus
+					
+				for each entry:
+				-assign approval status with return value of IsLoanApproved METHOD CALL
+				-assign approval status to array loanDecisions at index corresponding to current iteration idex
+			
+				if approvalStatus is true:
+					printToScreen first name + last name + ", your loan is approved!"
+				else if approvalStatus is false:
+					printToScreen first name + last name + "Monthly Payment is not available"
+			
+				now call PrintLoanDecisions METHOD to print out ALL LOAN DECISIONS!
+					-pass the array loanDecisoins to determine approval status for each line read in CSV file
+			
+	else if user chooses d. Exit Mortgage Banking Interface
+		printToScreen "Have a Great Day! Please come back in the future~"
+		boolaen userQuits = false;
+	
